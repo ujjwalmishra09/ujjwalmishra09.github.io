@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "./node_modules/.bin/webpack-dev-server --content-base --inline --hot",
-    "build" : "webpack -p"
+    "build": "webpack -p"
   },
   "dependencies": {
     "axios": "^0.15.2",
@@ -21,6 +21,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "jquery": "^3.1.0",
+    "prop-types": "^15.6.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
@@ -30,6 +31,12 @@
     "redux-thunk": "^2.1.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.1.0"
   },
   "author": "Ujjwal Mishra",
   "license": "ISC"
