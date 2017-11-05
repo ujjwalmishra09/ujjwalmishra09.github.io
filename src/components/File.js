@@ -9,10 +9,10 @@ export default class File extends React.Component {
     return (
       <div>
         <Row>
-          <Col xm={8} sm={8} md={8}>
+          <Col xs={8} sm={8} md={8}>
             <p > {fileName} </p>
           </Col>
-          <Col xm={4} sm={4} md={4}>
+          <Col xs={4} sm={4} md={4}>
             <div>
               {fileType}
             </div>

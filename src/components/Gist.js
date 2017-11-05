@@ -11,6 +11,9 @@ function getStyles() {
     image: {
       height: 50,
       width: 50
+    },
+    popOver: {
+      width: 300
     }
   };
 }
@@ -28,17 +31,17 @@ export default class Gist extends React.Component {
 
   render() {
     const { username, avatar, files, forks } = this.props;
-    const { image } = getStyles();
+    const { image, popOver } = getStyles();
     const filesNodes = Object.keys(files)
       .map((fileName, i) => {
         return (
           <File key={i} fileName={fileName} fileType={files[fileName].type} />
         );
       });
-    const forksNodes = forks && forks.map(({ owner, forks_url }, i) => {
+    const forksNodes = forks && forks.map(({ owner, html_url }, i) => {
       return (
         <div key={i}>
-          <a href={forks_url}><img src={owner.avatar_url} style={image} /></a>{owner.login} // eslint-disable-line
+          <a href={html_url}><img src={owner.avatar_url} style={image} /></a>{owner.login}
         </div>
       );
     });
@@ -46,7 +49,7 @@ export default class Gist extends React.Component {
     const message = forks && !forks.length && 'No forks found';
 
     const popoverClickRootClose = (
-      <Popover id="popover-trigger-click-root-close" title="forks">
+      <Popover id="popover-trigger-click-root-close" title="forks" style={popOver}>
          {forksNodes}
          {message}
       </Popover>
