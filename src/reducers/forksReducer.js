@@ -1,5 +1,5 @@
 const initialState = {
-  gists: [],
+  forks: [],
   fetching: false,
   fetched: false,
   error: null
@@ -9,7 +9,7 @@ export default function reducer(state = initialState, action) {
 
   switch (action.type) {
 
-  case 'FETCH_GISTS_PENDING':
+  case 'FETCH_FOKRS_PENDING':
     return {
       ...state,
       fetching: true,
@@ -17,27 +17,15 @@ export default function reducer(state = initialState, action) {
       error: null
     };
 
-  case 'FETCH_GISTS_FULFILLED':
+  case 'FETCH_FOKRS_FULFILLED':
     return {
       ...state,
       fetching: false,
       fetched: true,
-      gists: action.payload
+      forks: action.payload
     };
-  case 'FETCH_FORKS_FULFILLED': {
 
-    const gists = state.gists.map((gist) => {
-      if (gist.id === action.payload.id) gist.forks = action.payload.data;
-      return gist;
-    });
-
-    return {
-      ...state,
-      gists
-    };
-  }
-
-  case 'FETCH_GISTS_REJECTED':
+  case 'FETCH_FOKRS_REJECTED':
     return {
       ...state,
       fetching: false,

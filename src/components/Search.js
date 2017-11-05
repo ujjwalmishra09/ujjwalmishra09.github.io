@@ -27,11 +27,11 @@ export default class Search extends React.Component {
         <FormControl
           type="text"
           value={this.state.value}
-          placeholder="Enter user name"
+          placeholder="Enter user name like facebook or Shinichi-Nakagawa"
           onChange={this.handleChange}
         />
-        <InputGroup.Addon>
-          <Glyphicon glyph="search" onClick={this.onClick}/>
+        <InputGroup.Addon onClick={this.onClick}>
+          <Glyphicon glyph="search"/>
         </InputGroup.Addon>
       </InputGroup>
     );

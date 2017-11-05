@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 import Gists from './Gists';
 import Search from './Search';
-import { fetchGists } from '../actions/gistsActions';
+import fetchGists from '../actions/gistsActions';
 
 function getStyles() {
   return {
     main: {
-      width: 720,
+      maxWidth: 920,
       margin: 'auto',
       marginTop: 50
     }
@@ -28,11 +28,27 @@ class Main extends React.Component {
   }
 
   render() {
+    const { gists, fetching, fetched, error, dispatch } = this.props;
     const { main } = getStyles();
+    const { search } = this.refs;
+
     return (
       <div style={main}>
-        <Search onSearch={this.onSearch} />
-        {/* <Gists gists ={this.props.gists}/> */}
+        <Search ref='search' onSearch={this.onSearch} />
+        {
+          error &&
+          <center> Some error occured </center>
+        }
+
+        {
+          fetching && !fetched && !error &&
+          <center> <h1> Please wait... </h1> </center>
+        }
+
+        {
+          !fetching && fetched &&
+          <Gists gists ={gists} searchValue={search && search.state.value} dispatch={dispatch}/>
+        }
       </div>
     );
   }
@@ -40,11 +56,17 @@ class Main extends React.Component {
 
 Main.propTypes = {
   gists: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  fetched: PropTypes.bool.isRequired,
+  error: PropTypes.object
 };
 
 export default connect(({ gistsReducer }) => {
   return {
-    gists: gistsReducer.gists
+    gists: gistsReducer.gists,
+    fetching: gistsReducer.fetching,
+    fetched: gistsReducer.fetched,
+    error: gistsReducer.error
   };
 })(Main);
